@@ -11,11 +11,11 @@ const uint8_t ROBOCLAW = 0x80;
 const long ROBOCLAW_BAUD_RATE = 38400;
 const long ROBOCLAW_TIMEOUT = 10000; 
 const long CONTROL_TIMEOUT = 1000; //ms to wait  before killing motors
-const float PPREV = 1440; // encoder pulses per rotation
+const float PPRREV = 1440; // encoder pulses per rotation
 const float TRACK = 0.3048; // Robot thiccness in METERS
 const float DIAMETER = 0.3302; // in METERS
 const float REVPM = 1.0 / (M_PI * DIAMETER); // revolutions per meter
-const float PPM = PPREV * REVPM; // encoder pulses per meter
+const float PPM = PPRREV * REVPM; // encoder pulses per meter
 // END CONSTS
 
 // Use uno's Serial1 (same as sabertooth)
