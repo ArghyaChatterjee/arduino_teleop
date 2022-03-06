@@ -11,7 +11,9 @@ git clone https://github.com/JetsonHacksNano/installArduinoIDE.git
 cd installArduinoIDE
 ./installArduinoIDE.sh
 ```
-The first time you will open arduino ide, it will show up some library and board update. Do that in order to save time. In order to run this repo, we need some specific arduino library. Download [roserial Arduino Library 0.7.9](https://www.arduino.cc/reference/en/libraries/rosserial-arduino-library/) and [roboclaw arduino library](https://github.com/basicmicro/roboclaw_arduino_library), extract them if needed and put those 2 folders inside `~/Arduino/libraries/` directory. Now, clone this repository to compile and upload the code to your arduino mega board.
+The first time you will open arduino ide, it will show up some library and board update. Do that in order to save time. In order to run this repo, we need some specific arduino library. Download [roserial Arduino Library 0.7.9](https://www.arduino.cc/reference/en/libraries/rosserial-arduino-library/) and [roboclaw arduino library](https://github.com/basicmicro/roboclaw_arduino_library), extract them if needed and put those 2 folders inside `~/Arduino/libraries/` directory. 
+
+Now, clone this repository to compile and upload the code to your arduino mega board.
 ```
 git clone https://github.com/ArghyaChatterjee/arduino_teleop.git
 cd arduino_teleop/teleop
@@ -30,7 +32,3 @@ Compile the code via verify button to see the errors on arduino terminal if any.
 The `teleop` sketch interfaces with two Roboclaw controllers and a `rosserial` bridge over USB.  It subscribes to the cmd_vel topic which contains the robot's target twist and then converts these msgs to left/right wheel spin speeds.  The roboclaw's PID controllers obtain these desired speeds with the input of encoders.
 
 `tune_pid` is used to tune (using the arduino serial moniter) the pids of the roboclaws.  To tune PID, the phidgets board will need to actually be collecting encoder data(even though you don't actually use this data) otherwise the encoders will not be powered and the roboclaws will not get an encoder signal.
-
-## Installation
-
-Uses an arduino mega.  Need to have ros and Roboclaw arduino libarys to flash to the arduino. Serial1 is used for communication with RoboClaw controllers.  Roboclaw controllers must be wired in single mode as per the roboclaw user manual.  roboclaw controls the left/right side wheels of the robot respectively.  
