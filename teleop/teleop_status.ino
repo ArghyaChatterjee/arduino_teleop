@@ -7,10 +7,10 @@
 
 // BEGIN CONSTS
 //TODO: MAKE SURE THIS ADDRESS MATCHES THAT OF THE CONTROLLER
-const uint8_t ROBOCLAW0 = 0x80;
-const uint8_t ROBOCLAW1 = 0x81;
-const bool REVERSE0 = false;
-const bool REVERSE1 = true;
+const uint8_t ROBOCLAW = 0x80;
+//const uint8_t ROBOCLAW1 = 0x81;
+//const bool REVERSE0 = false;
+//const bool REVERSE1 = true;
 const long ROBOCLAW_BAUD_RATE = 38400;
 const long ROBOCLAW_TIMEOUT = 10000; 
 const long CONTROL_TIMEOUT = 1000; //ms to wait  before killing motors
@@ -49,11 +49,11 @@ void cmdVelCallback(const geometry_msgs::Twist &twist) {
   // [1  t][wz] = [vr]
   float vLeft = linear - spin * HALFTRACK*2;
   float vRight = linear + spin * HALFTRACK*2;
-  vLeft = REVERSE0 ? -vLeft : vLeft;
-  vRight = REVERSE1 ? -vRight : vRight;
+  //vLeft = REVERSE0 ? -vLeft : vLeft;
+  //vRight = REVERSE1 ? -vRight : vRight;
   
-  roboclaw.SpeedM1M2(ROBOCLAW0, vLeft * PPM, vLeft * PPM);
-  roboclaw.SpeedM1M2(ROBOCLAW1, vRight * PPM, vRight * PPM);
+  roboclaw.SpeedM1M2(ROBOCLAW, vLeft * PPM, vRight * PPM);
+  //roboclaw.SpeedM1M2(ROBOCLAW1, vRight * PPM, vRight * PPM);
 }
 
 void setup() {
@@ -73,8 +73,8 @@ void setMode(int val) {
 void loop(){
   handle.spinOnce();
   if(millis() - lastData >= CONTROL_TIMEOUT){
-    roboclaw.SpeedM1M2(ROBOCLAW0, 0, 0);
-    roboclaw.SpeedM1M2(ROBOCLAW1, 0, 0);
+    roboclaw.SpeedM1M2(ROBOCLAW, 0, 0);
+    //roboclaw.SpeedM1M2(ROBOCLAW1, 0, 0);
   }
 
   setMode(digitalRead(3));//temporary
