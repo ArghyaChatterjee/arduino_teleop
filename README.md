@@ -19,7 +19,14 @@ git clone https://github.com/ArghyaChatterjee/arduino_teleop.git
 cd arduino_teleop/teleop
 arduino teleop.ino
 ```
-Compile the code via verify button to see the errors on arduino terminal if any. If not, upload the code directly to the arduino mega board via upload button. Remember to select `ttyACM0` port during upload. Once uploaded, you can use rosserial node inside your roslaunch file this way to communicate with roboclaw via arduino mega:
+Compile the code via verify button to see the errors on arduino terminal if any. If not, upload the code directly to the arduino mega board via upload button. Remember to select `ttyACM0` port during upload. Once uploaded, you can use rosserial to communicate with arduino mega. 
+
+Install these packages to communicate with ROS via arduino mega:
+```
+sudo apt-get install ros-melodic-rosserial-arduino
+sudo apt-get install ros-melodic-rosserial
+```
+Now, include these lines inside your roslaunch file this way to communicate with roboclaw via arduino mega:
 ```
 <node name="serial_node" pkg="rosserial_python" type="serial_node.py">
 		<param name="port" value="/dev/ttyACM0"/>
